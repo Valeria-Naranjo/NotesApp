@@ -1,30 +1,30 @@
-class Note {
+class Event {
   final String id;
   final String userId;
   final String title;
-  final String content;
+  final String description;
+  final DateTime date;
   final DateTime? reminder;
-  final String? imageUrl; // campo nuevo
 
-  Note({
+  Event({
     required this.id,
     required this.userId,
     required this.title,
-    required this.content,
+    required this.description,
+    required this.date,
     this.reminder,
-    this.imageUrl,
   });
 
-  factory Note.fromMap(Map<String, dynamic> map) {
-    return Note(
+  factory Event.fromMap(Map<String, dynamic> map) {
+    return Event(
       id: map['id'].toString(),
       userId: map['user_id'] ?? '',
       title: map['title'] ?? '',
-      content: map['content'] ?? '',
+      description: map['description'] ?? '',
+      date: DateTime.parse(map['date']),
       reminder: map['reminder'] != null
           ? DateTime.parse(map['reminder'])
           : null,
-      imageUrl: map['image_url'], // campo nuevo
     );
   }
 }
